@@ -11,6 +11,8 @@ import XCTest
 
 class APIClientTests: XCTestCase
 {
+    var service = GetPopularImagesService()
+
     override func setUp() {
         
     }
@@ -19,12 +21,27 @@ class APIClientTests: XCTestCase
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testPopularRequest()
+    func testPopularRequestIsNotEmpty()
     {
         let e = expectation(description: "Get Popular Images")
-        GetPopularImagesService().execute(onSuccess: { (poularImageModel) in
-            assert(poularImageModel.currentPage != nil, "Current Page is empty")
-            assert(poularImageModel.totalPages != nil, "total pages is empty")
+        self.service.execute(onSuccess: { (poularImageModel) in
+            assert(poularImageModel.currentPage > 0, "Current Page is empty")
+            assert(poularImageModel.totalPages > 0 , "total pages is empty")
+            e.fulfill()
+        }) { (error) in
+            assertionFailure("There is an error: \(error)")
+            e.fulfill()
+        }
+        
+        wait(for: [e], timeout: 5.0)
+    }
+    
+    func testPopularRequestChangesPageNumber()
+    {
+        let e = expectation(description: "Get Popular Images")
+        self.service.update(pageNumber: 2)
+        self.service.execute(onSuccess: { (poularImageModel) in
+            assert(poularImageModel.currentPage > 1, "Current Page is not updating")
             e.fulfill()
         }) { (error) in
             assertionFailure("There is an error: \(error)")

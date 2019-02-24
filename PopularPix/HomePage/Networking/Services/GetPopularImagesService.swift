@@ -10,11 +10,23 @@ import Foundation
 
 struct GetPopularImagesService: APIClient
 {
+    fileprivate(set) var pageNumber: Int = 1
+    
     var request: RequestDataModel
     {
         return RequestDataModel(
             path: "https://api.500px.com/v1/photos?",
-            params: ["feature": "popular", "consumer_key": Keys.getConsumerKey()], headers: self.getDefaultHeaders())
+            params: [
+                "feature": "popular",
+                "consumer_key": Keys.getConsumerKey(),
+                "page": "\(self.pageNumber)"
+            ],
+            headers: self.getDefaultHeaders())
+    }
+    
+    mutating func update(pageNumber: Int)
+    {
+        self.pageNumber = pageNumber
     }
     
     typealias RequestType = GetPopularImagesModel
@@ -24,8 +36,8 @@ struct GetPopularImagesService: APIClient
 
 struct GetPopularImagesModel: Codable
 {
-    let currentPage: Int?
-    let totalPages: Int?
+    let currentPage: Int
+    let totalPages: Int
 //    let photos: [Photos]
     
     enum CodingKeys: String, CodingKey
