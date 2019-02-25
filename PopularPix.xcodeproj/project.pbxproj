@@ -32,6 +32,7 @@
 		E8F199F322230165007C2F7F /* RequestDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F199F222230165007C2F7F /* RequestDataModel.swift */; };
 		E8F199F4222309C0007C2F7F /* RequestDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F199F222230165007C2F7F /* RequestDataModel.swift */; };
 		E8F199F92223179A007C2F7F /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F199F82223179A007C2F7F /* Keys.swift */; };
+		E8FE9E15222395C300BD268A /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FE9E14222395C300BD268A /* DetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +77,7 @@
 		E8F199EC2222FED1007C2F7F /* GetPopularImagesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPopularImagesService.swift; sourceTree = "<group>"; };
 		E8F199F222230165007C2F7F /* RequestDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestDataModel.swift; sourceTree = "<group>"; };
 		E8F199F82223179A007C2F7F /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
+		E8FE9E14222395C300BD268A /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +125,7 @@
 		E8577149222372B200B9BDCE /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				E8F199B72222E659007C2F7F /* Main.storyboard */,
 				E80DCE332223771500C968FB /* Extensions */,
 				E8F199F122230144007C2F7F /* Models */,
 				E8F199F722231782007C2F7F /* Resources */,
@@ -134,7 +137,6 @@
 		E857714A222372BE00B9BDCE /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				E8F199B72222E659007C2F7F /* Main.storyboard */,
 				E80DCE2E222375D700C968FB /* Cells */,
 			);
 			path = Views;
@@ -174,6 +176,7 @@
 				E8F199B32222E659007C2F7F /* AppDelegate.swift */,
 				E8577149222372B200B9BDCE /* Common */,
 				E8F199E12222E736007C2F7F /* HomePage */,
+				E8FE9E112223957400BD268A /* DetailsPage */,
 				E8F199BA2222E65B007C2F7F /* Assets.xcassets */,
 				E8F199BC2222E65B007C2F7F /* LaunchScreen.storyboard */,
 				E8F199BF2222E65B007C2F7F /* Info.plist */,
@@ -243,6 +246,22 @@
 				E8F199F82223179A007C2F7F /* Keys.swift */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		E8FE9E112223957400BD268A /* DetailsPage */ = {
+			isa = PBXGroup;
+			children = (
+				E8FE9E122223958B00BD268A /* Controllers */,
+			);
+			path = DetailsPage;
+			sourceTree = "<group>";
+		};
+		E8FE9E122223958B00BD268A /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				E8FE9E14222395C300BD268A /* DetailsViewController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -388,6 +407,7 @@
 				E85771432223636E00B9BDCE /* PopularImagesResponse.swift in Sources */,
 				E80DCE352223772B00C968FB /* UIImageView-Ext.swift in Sources */,
 				E8F199F92223179A007C2F7F /* Keys.swift in Sources */,
+				E8FE9E15222395C300BD268A /* DetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
