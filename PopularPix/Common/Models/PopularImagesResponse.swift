@@ -12,7 +12,12 @@ struct PopularImagesResponseModel: Codable
 {
     let currentPage: Int
     let totalPages: Int
-    let photos: [Photos]
+    fileprivate(set) var photos: [Photos]
+    
+    mutating func update(photos: [Photos])
+    {
+        self.photos.insert(contentsOf: photos, at: 0)
+    }
     
     enum CodingKeys: String, CodingKey
     {

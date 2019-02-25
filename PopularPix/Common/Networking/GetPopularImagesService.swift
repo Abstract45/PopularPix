@@ -19,7 +19,8 @@ struct GetPopularImagesService: APIClient
             params: [
                 "feature": "popular",
                 "consumer_key": Keys.getConsumerKey(),
-                "page": "\(self.pageNumber)"
+                "page": "\(self.pageNumber)",
+                "image_size": "2,4"
             ],
             headers: self.getDefaultHeaders())
     }
