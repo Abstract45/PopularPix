@@ -50,6 +50,23 @@ class APIClientTests: XCTestCase
         
         wait(for: [e], timeout: 5.0)
     }
+    
+    func testPopularImagesRequestForAtLeastOnePhotosModel()
+    {
+        let e = expectation(description: "Get Popular Images")
+        self.service.update(pageNumber: 1)
+        self.service.execute(onSuccess: { (poularImageModel) in
+            assert(poularImageModel.currentPage == 1, "Current Page is not updating")
+            assert(poularImageModel.photos.count > 0, "photos model is empty")
+            assert(poularImageModel.photos.first?.user?.avatars?.small?.https != nil, "Could not get the small image url for the user")
+            e.fulfill()
+        }) { (error) in
+            assertionFailure("There is an error: \(error)")
+            e.fulfill()
+        }
+        
+        wait(for: [e], timeout: 5.0)
+    }
 
     func testPerformanceExample() {
         // This is an example of a performance test case.
