@@ -15,7 +15,7 @@ class MainPageVC: UIViewController
     fileprivate(set) var photoCount = 0
     fileprivate var imageService: GetPopularImagesService = GetPopularImagesService()
     fileprivate let screenWidth = UIScreen.main.bounds.width
-
+    fileprivate var detailsVC: DetailsViewController?
     var popularImageResponseModel: PopularImagesResponseModel?
     
     override func viewDidLoad()
@@ -27,6 +27,7 @@ class MainPageVC: UIViewController
         collectionView.register(UINib(nibName: "MainPageCollectionCell", bundle: nil), forCellWithReuseIdentifier: "mainPageCell")
         self.setupLayout()
         self.fetchData(for: 1)
+        self.navigationItem.title = "Popular Pix"
     }
     
     func setupLayout()
@@ -77,16 +78,6 @@ extension MainPageVC
                         self?.collectionView.insertItems(at: indexPaths)
                         }, completion: nil)
                 }
-
-                
-//                self?.collectionView.performBatchUpdates({
-//                    for update in updates
-//                    {
-//                        case 
-//                    }
-//                    self?.photoCount = self?.popularImageResponseModel?.photos.count ?? 0
-//                    self?.collectionView.insertItems(at: indexPaths)
-//                }, completion: nil)
             }
         }) { (error) in
             // Add error handling here
@@ -97,13 +88,23 @@ extension MainPageVC
             }
         }
     }
+    
+    func presentDetailsVC(with indexPath: IndexPath)
+    {
+        detailsVC =             self.storyboard?.instantiateViewController(withIdentifier: "DetailsViewController") as? DetailsViewController
+        if let photoData = self.popularImageResponseModel?.photos[indexPath.row]
+        {
+            detailsVC?.photo = photoData
+        }
+        self.navigationController?.pushViewController(detailsVC!, animated: true)
+    }
 }
 
 extension MainPageVC: UICollectionViewDelegate
 {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
     {
-        
+        self.presentDetailsVC(with: indexPath)
     }
 }
 

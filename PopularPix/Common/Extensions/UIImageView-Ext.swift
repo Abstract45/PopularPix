@@ -10,7 +10,7 @@ import UIKit
 
 extension UIImageView
 {
-    func getImage(from urlString: String, onCompletion: @escaping () -> ())
+    func getImage(from urlString: String, onCompletion: @escaping (() -> ()))
     {
         guard let imageURL = URL(string: urlString) else { return }
         
